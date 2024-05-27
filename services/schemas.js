@@ -11,20 +11,3 @@ const productoSchema = new Schema({
 })
 
 export const Producto = model('Producto', productoSchema)
-
-// const producto = new Producto({
-//     nombreProducto: "7Up",
-//     imagen: "",
-//     descripcion: "Gaseosa ...",
-//     precio: 400
-// })
-
-// producto.save()
-
-// .then(result => {
-//     console.log(result);
-//     mongoose.connection.close()
-// })
-// .catch(err => {
-//     console.log(err);
-// })
