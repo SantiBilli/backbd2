@@ -13,7 +13,7 @@ export const loginUser = async (req, res) => {
     const userId = await redis_client.v4.HGET(bodyParams.email, 'id')
     const rol = await redis_client.v4.HGET(bodyParams.email, 'rol')
 
-    const token = generateToken({userId})
+    const token = generateToken({userId, rol})
 
     return res.json({
         token: token,
