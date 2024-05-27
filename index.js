@@ -8,6 +8,7 @@ import checkEmailRouter from './routes/CheckEmail.js';
 import "./services/schemas.js";
 import fileRouter from './routes/Files.js';
 import carritoRouter from './routes/Carrito.js';
+import checkRolRouter from './routes/CheckRol.js';
 
 const app = express()
 const PORT = process.env.PORT || 3550
@@ -23,6 +24,7 @@ app.use("/api", checkEmailRouter)
 app.use("/api", fileRouter)
 app.use("/api", pingRouter)
 app.use("/api", carritoRouter)
+app.use("/api", checkRolRouter)
 
 
 app.listen(PORT, async () => {
