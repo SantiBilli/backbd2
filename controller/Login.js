@@ -11,6 +11,7 @@ export const loginUser = async (req, res) => {
     if (userContra !=  bodyParams.contra) return res.status(401).send("Datos Incorrectos")
     
     const userId = await redis_client.v4.HGET(bodyParams.email, 'id')
+    const rol = await redis_client.v4.HGET(bodyParams.email, 'rol')
 
     const token = generateToken({userId})
 
@@ -18,7 +19,8 @@ export const loginUser = async (req, res) => {
         token: token,
         userData: {
             userId: userId,
-            email: bodyParams.email
+            email: bodyParams.email,
+            rol: rol
         }
     })
 }

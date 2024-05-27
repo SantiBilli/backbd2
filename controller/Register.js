@@ -15,7 +15,8 @@ export const registerUser = async (req, res) => {
         'nombre':`${bodyParams.nombre}`,
         'apellido':`${bodyParams.apellido}`,
         'DNI':`${bodyParams.dni}`,
-        'contra':`${bodyParams.contra}`
+        'contra':`${bodyParams.contra}`,
+        'rol':`default`
     })
 
     // console.log("Hash Created!");
