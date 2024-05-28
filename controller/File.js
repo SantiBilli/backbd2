@@ -4,28 +4,30 @@ export const fileUpload = async (req, res) => {
     const bodyParams = req.body
     const imagen = req.file
 
-    console.log(imagen);
     console.log(bodyParams);
+    console.log(imagen);
 
-    if (req.file === undefined || bodyParams.nameProd === '' || bodyParams.description === '' || bodyParams.price === '') return res.status(204).send("Error.") 
+    // if (req.file === undefined || bodyParams.nameProd === '' || bodyParams.description === '' || bodyParams.price === '') return res.status(204).send("Error.") 
 
-    const image = imagen.buffer.toString('base64')
+    // const image = imagen.buffer.toString('base64')
 
-    const producto = new Producto({
-        nombreProducto: bodyParams.nombreProducto,
-        imagen: image,
-        descripcion: bodyParams.descripcion,
-        precio: bodyParams.precio
-    })
+    // const producto = new Producto({
+    //     nombreProducto: bodyParams.nombreProducto,
+    //     imagen: image,
+    //     descripcion: bodyParams.descripcion,
+    //     precio: bodyParams.precio
+    // })
 
-    producto.save()
+    // producto.save()
 
-    .then(() => {
-        return res.send()
-    })
-    .catch(err => {
-        return res.status(204).send("Error.")
-    })
+    // .then(() => {
+    //     return res.send()
+    // })
+    // .catch(err => {
+    //     return res.status(204).send("Error.")
+    // })
+
+    return res.send()
 }
 
 export const postsList = async (req, res) => {

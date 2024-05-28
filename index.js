@@ -26,6 +26,7 @@ app.use("/api", pingRouter)
 app.use("/api", carritoRouter)
 app.use("/api", checkRolRouter)
 
+app.use("/api/images/products", express.static('C:\\Users\\santi\\Desktop\\TP BD2\\backbd2\\uploads'))
 
 app.listen(PORT, async () => {
     console.log(`Server listening on https//localhost:${PORT}`)
