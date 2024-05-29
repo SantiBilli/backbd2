@@ -1,31 +1,31 @@
 import { Producto } from "../services/schemas.js";
+import { v4 } from "uuid";
 
 export const fileUpload = async (req, res) => {
     const bodyParams = req.body
     const imagen = req.file
 
-    console.log(bodyParams);
-    console.log(imagen);
+    if (req.file === undefined || bodyParams.nameProd === '' || bodyParams.description === '' || bodyParams.price === '') return res.status(204).send("Error.") 
 
-    // if (req.file === undefined || bodyParams.nameProd === '' || bodyParams.description === '' || bodyParams.price === '') return res.status(204).send("Error.") 
+    const productId = v4()
+    console.log(productId);
 
-    // const image = imagen.buffer.toString('base64')
+    const producto = new Producto({
+        _id: productId,
+        nombreProducto: bodyParams.nombreProducto,
+        imagen: imagen.filename,
+        descripcion: bodyParams.descripcion,
+        precio: bodyParams.precio
+    })
 
-    // const producto = new Producto({
-    //     nombreProducto: bodyParams.nombreProducto,
-    //     imagen: image,
-    //     descripcion: bodyParams.descripcion,
-    //     precio: bodyParams.precio
-    // })
+    producto.save()
 
-    // producto.save()
-
-    // .then(() => {
-    //     return res.send()
-    // })
-    // .catch(err => {
-    //     return res.status(204).send("Error.")
-    // })
+    .then(() => {
+        return res.send()
+    })
+    .catch(err => {
+        return res.status(204).send("Error.")
+    })
 
     return res.send()
 }

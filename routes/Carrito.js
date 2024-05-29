@@ -1,11 +1,11 @@
 import { Router } from "express"
 import { validateToken } from "../middlewares/Authenticator.js"
-import { getCarrito } from "../controller/Carrito.js"
+import { agregarProductoCarrito, getCarrito } from "../controller/Carrito.js"
 
 const carritoRouter = Router()
 
-carritoRouter.get('/get-carrito', validateToken, getCarrito) 
+carritoRouter.post('/get-carrito', validateToken, getCarrito) 
 
-// carritoRouter.post('/get-products', validateToken, postsList)
+carritoRouter.post('/agregar-producto-carrito', validateToken, agregarProductoCarrito)
 
 export default carritoRouter
