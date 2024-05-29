@@ -26,14 +26,23 @@ export const agregarProductoCarrito = async (req, res) => {
 }
 
 export const cambiarCantidad = async (req, res) => {
+    
     const bodyParams = req.body
 
+    // console.log(bodyParams);
+
     try {
-        // const cambioCantidad = await Carrito.updateOne({"idUsuario": bodyParams.userId,"productos.idProducto":bodyParams.idProducto},{$set:{"productos.$[producto].cantidad":bodyParams.cambiarCantidad}},{arrayFilters:[{'producto.idProducto':bodyParams.idProducto}]});
-        // const cambioCantidad = await Carrito.find({"idUsuario": bodyParams.userId, "productos.idProducto":bodyParams.idProducto},{"productos":1, _id:0});
-        
-        // console.log(cambioCantidad);
+        const cambioCantidad = await Carrito.updateOne(
+            { "idUsuario": bodyParams.userId, "productos.idProducto": bodyParams.idProducto},
+            { "$set": { "productos.$[element].cantidad": bodyParams.cantidad } },
+            { "arrayFilters": [
+                {
+                    "element.idProducto": bodyParams.idProducto
+                }
+            ] }
+        );
         return res.status(200).send();
+
     } catch (error) {
         console.error("Error:", error);
         return res.status(500).send("Error");
