@@ -1,35 +1,31 @@
+import { agregarProductoCarritoSVC, getCarritoSVC } from "../services/carrito.js";
 import { Carrito } from "../services/schemas.js";
 
 export const getCarrito = async (req, res) => {
     const bodyParams = req.body
 
-    try {
-        const carrito = await Carrito.find({'usuarioId':bodyParams.idUsuario});
-        return res.json(carrito[0]);
-    } catch (error) {
-        console.error("Error:", error);
-        return res.status(500).send("Error");
-    }
+    const carrito = await getCarritoSVC(bodyParams)
+
+    if (carrito == false) return res.status(500).send("Error");
+
+    return res.json(carrito[0]);
 }
 
 export const agregarProductoCarrito = async (req, res) => {
     const bodyParams = req.body
 
-    try {
-        const carrito = await Carrito.updateOne({'idUsuario':bodyParams.idUsuario},{$push:{productos:{idProducto:bodyParams.idProducto, nombreProducto:bodyParams.nombreProducto, precio:bodyParams.precio, cantidad:bodyParams.cantidad}}});
-        
-        return res.status(200).send();
-    } catch (error) {
-        console.error("Error:", error);
-        return res.status(500).send("Error");
-    }
+    const agregar = agregarProductoCarritoSVC(bodyParams)
+
+    if (agregar == false) return res.status(500).send("Error");
+    
+    return res.status(200).send();
+
+
 }
 
 export const cambiarCantidad = async (req, res) => {
     
     const bodyParams = req.body
-
-    // console.log(bodyParams);
 
     try {
         const cambioCantidad = await Carrito.updateOne(
@@ -47,4 +43,23 @@ export const cambiarCantidad = async (req, res) => {
         console.error("Error:", error);
         return res.status(500).send("Error");
     }
+}
+
+export const borrarProducto = async (req, res) => {
+    
+    const bodyParams = req.body
+    
+    try {
+        const borrado = await Carrito.updateOne(
+            { "idUsuario": bodyParams.userId },
+            { $pull: { "productos": { "idProducto": bodyParams.idProducto } } }
+        );
+        return res.status(200).send();
+
+    } catch (error) {
+        console.error("Error:", error);
+        return res.status(500).send("Error");
+    }
+
+    return res.send()
 }
