@@ -15,7 +15,8 @@ export const fileUpload = async (req, res) => {
         nombreProducto: bodyParams.nombreProducto,
         imagen: imagen.filename,
         descripcion: bodyParams.descripcion,
-        precio: bodyParams.precio
+        precio: bodyParams.precio,
+        descuento: bodyParams.descuento
     })
 
     producto.save()

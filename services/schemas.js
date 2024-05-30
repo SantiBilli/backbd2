@@ -5,7 +5,8 @@ const productoSchema = new Schema({
     nombreProducto: String,
     imagen: String,
     descripcion: String,
-    precio: Number
+    precio: Number,
+    descuento: Number
 },    
 {
     versionKey: false
@@ -15,13 +16,29 @@ export const Producto = model('Producto', productoSchema)
 const carritoSchema = new Schema({
     _id: String,
     idUsuario: String,
-    productos: [{ idProducto: String, nombreProducto: String, precio: Number, cantidad: Number, _id: false}]
+    productos: [{ idProducto: String, nombreProducto: String, precio: Number, cantidad: Number, descuento: Number, _id: false}]
 },    
 {
     versionKey: false
 })
 
 export const Carrito = model('Carrito', carritoSchema)
+
+const pedidoSchema = new Schema({
+    _id: String,
+    nombre: String,
+    apellido: String,
+    direccion: String,
+    iva: String,
+    pago: String,
+    subtotal: Number,
+    productos: [{nombreProducto: String, cantidad: Number, precio: Number, _id: false}]
+},    
+{
+    versionKey: false
+})
+
+export const Pedido = model('Pedido', pedidoSchema)
 
 // const carrito = new Carrito({
 //     _id: "ea1ce3f8-01e3-4989-a44e-8c0e217f3575",

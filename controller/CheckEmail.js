@@ -1,12 +1,10 @@
-// import { checkEmailExists } from "../services/CheckEmail.js"
-
-import redis_client from "../services/database.js"
+import { emailExistSVC } from "../services/CheckEmail.js"
 
 export const checkEmail = async (req, res) => {
 
     const bodyParams = req.body
 
-    const emailExist = await redis_client.v4.hExists(bodyParams.email,"email")
+    const emailExist = await emailExistSVC(bodyParams)
 
     if (emailExist == false) return res.status(204).send("Mail Found")
 

@@ -9,6 +9,8 @@ import "./services/schemas.js";
 import fileRouter from './routes/Files.js';
 import carritoRouter from './routes/Carrito.js';
 import checkRolRouter from './routes/CheckRol.js';
+import datosUsuarioRouter from './routes/DatosUsuario.js';
+import crearPedidoRouter from './routes/CrearPedido.js';
 
 const app = express()
 const PORT = process.env.PORT || 3550
@@ -25,6 +27,8 @@ app.use("/api", fileRouter)
 app.use("/api", pingRouter)
 app.use("/api", carritoRouter)
 app.use("/api", checkRolRouter)
+app.use("/api", datosUsuarioRouter)
+app.use("/api", crearPedidoRouter)
 
 app.use("/api/images/products", express.static('C:\\Users\\santi\\Desktop\\TP BD2\\backbd2\\uploads'))
 

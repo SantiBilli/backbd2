@@ -1,5 +1,4 @@
-import { agregarProductoCarritoSVC, getCarritoSVC } from "../services/carrito.js";
-import { Carrito } from "../services/schemas.js";
+import { agregarProductoCarritoSVC, borrarProductoSVC, cambiarCantidadSVC, getCarritoSVC } from "../services/carrito.js";
 
 export const getCarrito = async (req, res) => {
     const bodyParams = req.body
@@ -14,52 +13,31 @@ export const getCarrito = async (req, res) => {
 export const agregarProductoCarrito = async (req, res) => {
     const bodyParams = req.body
 
-    const agregar = agregarProductoCarritoSVC(bodyParams)
+    const agregar = await agregarProductoCarritoSVC(bodyParams)
 
     if (agregar == false) return res.status(500).send("Error");
     
     return res.status(200).send();
-
-
 }
 
 export const cambiarCantidad = async (req, res) => {
     
     const bodyParams = req.body
 
-    try {
-        const cambioCantidad = await Carrito.updateOne(
-            { "idUsuario": bodyParams.userId, "productos.idProducto": bodyParams.idProducto},
-            { "$set": { "productos.$[element].cantidad": bodyParams.cantidad } },
-            { "arrayFilters": [
-                {
-                    "element.idProducto": bodyParams.idProducto
-                }
-            ] }
-        );
-        return res.status(200).send();
+    const cantidad = await cambiarCantidadSVC(bodyParams)
 
-    } catch (error) {
-        console.error("Error:", error);
-        return res.status(500).send("Error");
-    }
+    if (cantidad == false) return res.status(500).send("Error");
+    
+    return res.status(200).send();
 }
 
 export const borrarProducto = async (req, res) => {
     
     const bodyParams = req.body
     
-    try {
-        const borrado = await Carrito.updateOne(
-            { "idUsuario": bodyParams.userId },
-            { $pull: { "productos": { "idProducto": bodyParams.idProducto } } }
-        );
-        return res.status(200).send();
+    const borrado = await borrarProductoSVC(bodyParams)
 
-    } catch (error) {
-        console.error("Error:", error);
-        return res.status(500).send("Error");
-    }
-
-    return res.send()
+    if (borrado == false) return res.status(500).send("Error");
+    
+    return res.status(200).send();
 }
