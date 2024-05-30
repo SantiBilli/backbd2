@@ -1,10 +1,10 @@
-import redis_client from "../services/database.js"
+import { apellidoUsuarioSVC, nombreUsuarioSVC } from "../services/DatosUsuarios.js"
 
 export const obtenerDatos = async (req, res) => {
     const bodyParams = req.body
 
-    const nombre = await redis_client.v4.HGET(bodyParams.email, 'nombre')
-    const apellido = await redis_client.v4.HGET(bodyParams.email, 'apellido')
+    const nombre = await nombreUsuarioSVC(bodyParams)
+    const apellido = await apellidoUsuarioSVC(bodyParams)
 
     return res.json({
         nombre: nombre,

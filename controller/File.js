@@ -1,5 +1,4 @@
-import { Producto } from "../services/schemas.js";
-import { v4 } from "uuid";
+import { postListSVC, uploadFileSVC } from "../services/File.js";
 
 export const fileUpload = async (req, res) => {
     const bodyParams = req.body
@@ -7,36 +6,14 @@ export const fileUpload = async (req, res) => {
 
     if (req.file === undefined || bodyParams.nameProd === '' || bodyParams.description === '' || bodyParams.price === '') return res.status(204).send("Error.") 
 
-    const productId = v4()
-    console.log(productId);
 
-    const producto = new Producto({
-        _id: productId,
-        nombreProducto: bodyParams.nombreProducto,
-        imagen: imagen.filename,
-        descripcion: bodyParams.descripcion,
-        precio: bodyParams.precio,
-        descuento: bodyParams.descuento
-    })
-
-    producto.save()
-
-    .then(() => {
-        return res.send()
-    })
-    .catch(err => {
-        return res.status(204).send("Error.")
-    })
+    await uploadFileSVC(bodyParams, imagen)
 
     return res.send()
 }
 
 export const postsList = async (req, res) => {
-    try {
-        const postList = await Producto.find();
-        return res.json(postList);
-    } catch (error) {
-        console.error("Error fetching products:", error);
-        return res.status(500).json({ error: "Internal Server Error" });
-    }
+    
+    const postList = await postListSVC()
+    return res.json(postList);
 }
