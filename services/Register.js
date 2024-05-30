@@ -1,5 +1,6 @@
 import { v4 } from "uuid"
 import { Carrito } from "./schemas.js"
+import redis_client from "./database.js"
 
 export const registerUserSVC = async (bodyParams) => {
 
