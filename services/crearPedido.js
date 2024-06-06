@@ -13,12 +13,14 @@ export const crearPedidoSVC = async (bodyParams) => {
 
     const pedido = new Pedido({
         _id: idPedido,
+        idUsuario: bodyParams.userId,
         nombre: bodyParams.nombre,
         apellido: bodyParams.apellido,
         direccion: bodyParams.direccion,
         iva: bodyParams.iva,
         pago: bodyParams.pago,
         subtotal: bodyParams.subtotal,
+        fecha: new Date(),
         productos: transformedProductos
     })
 

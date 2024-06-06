@@ -1,4 +1,4 @@
-import mongoose, { model, Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 
 const productoSchema = new Schema({
     _id: String,
@@ -26,12 +26,14 @@ export const Carrito = model('Carrito', carritoSchema)
 
 const pedidoSchema = new Schema({
     _id: String,
+    idUsuario: String,
     nombre: String,
     apellido: String,
     direccion: String,
     iva: String,
     pago: String,
     subtotal: Number,
+    fecha: Date,
     productos: [{nombreProducto: String, cantidad: Number, precio: Number, _id: false}]
 },    
 {
@@ -39,6 +41,21 @@ const pedidoSchema = new Schema({
 })
 
 export const Pedido = model('Pedido', pedidoSchema)
+
+const facturaSchema = new Schema({
+    _id: Number,
+    idUsuario: String,
+    nombre: String,
+    apellido: String,
+    fecha: Date,
+    tipoFactura: String, //Consumidor Final Factura B //Responsable Inscripto Factura A //Monotributo Factura B
+    productos: [{ idProducto: String, nombreProducto: String, precio: Number, cantidad: Number, descuento: Number, _id: false}]
+},    
+{
+    versionKey: false
+})
+
+export const Factura = model('Factura', facturaSchema)
 
 // const carrito = new Carrito({
 //     _id: "ea1ce3f8-01e3-4989-a44e-8c0e217f3575",

@@ -11,6 +11,7 @@ import carritoRouter from './routes/Carrito.js';
 import checkRolRouter from './routes/CheckRol.js';
 import datosUsuarioRouter from './routes/DatosUsuario.js';
 import crearPedidoRouter from './routes/CrearPedido.js';
+import obtenerPedidosRouter from './routes/ObtenerPedidos.js';
 
 const app = express()
 const PORT = process.env.PORT || 3550
@@ -29,6 +30,7 @@ app.use("/api", carritoRouter)
 app.use("/api", checkRolRouter)
 app.use("/api", datosUsuarioRouter)
 app.use("/api", crearPedidoRouter)
+app.use("/api", obtenerPedidosRouter)
 
 app.use("/api/images/products", express.static('C:\\Users\\santi\\Desktop\\BD2TPO\\backbd2\\uploads'))
 
