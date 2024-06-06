@@ -7,5 +7,5 @@ export const obtenerPedidos = async (req, res) => {
 
     console.log(pedidos);
 
-    return res.send()
+    return res.json(pedidos)
 }
