@@ -5,4 +5,7 @@ const checkEmailRouter = Router()
 
 checkEmailRouter.post("/check-email", checkEmail)
 
+// checkEmailRouter.get("/check-email/:email", checkEmail)
+
+
 export default checkEmailRouter

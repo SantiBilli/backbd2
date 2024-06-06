@@ -6,8 +6,8 @@ export const loginUser = async (req, res) => {
 
     const userContra = await userContraSVC(bodyParams)
 
-    if (userContra == null) return res.status(401).send("Datos Incorrectos")
-    if (userContra !=  bodyParams.contra) return res.status(401).send("Datos Incorrectos")
+    if (userContra == null) return res.status(401).send("Datos Incorrectos") //No existe mail
+    if (userContra !=  bodyParams.contra) return res.status(401).send("Datos Incorrectos") //Contrasaena incorrecta
     
     const userId = await userIdSVC(bodyParams)
     const rol = await rolSVC(bodyParams)
