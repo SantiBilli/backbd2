@@ -12,6 +12,7 @@ import checkRolRouter from './routes/CheckRol.js';
 import datosUsuarioRouter from './routes/DatosUsuario.js';
 import crearPedidoRouter from './routes/CrearPedido.js';
 import obtenerPedidosRouter from './routes/ObtenerPedidos.js';
+import crearFacturaRouter from './routes/CrearFactura.js';
 
 const app = express()
 const PORT = process.env.PORT || 3550
@@ -31,6 +32,7 @@ app.use("/api", checkRolRouter)
 app.use("/api", datosUsuarioRouter)
 app.use("/api", crearPedidoRouter)
 app.use("/api", obtenerPedidosRouter)
+app.use("/api", crearFacturaRouter)
 
 app.use("/api/images/products", express.static('C:\\Users\\GE\\OneDrive\\Desktop\\BD2\\backbd2\\uploads'))
 

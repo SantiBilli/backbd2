@@ -44,9 +44,9 @@ export const Pedido = model('Pedido', pedidoSchema)
 
 const facturaSchema = new Schema({
     _id: Number,
-    idUsuario: String,
     nombre: String,
     apellido: String,
+    direccion: String,
     fecha: Date,
     tipoFactura: String, //Consumidor Final Factura B //Responsable Inscripto Factura A //Monotributo Factura B
     productos: [{ idProducto: String, nombreProducto: String, precio: Number, cantidad: Number, descuento: Number, _id: false}]
@@ -57,10 +57,3 @@ const facturaSchema = new Schema({
 
 export const Factura = model('Factura', facturaSchema)
 
-// const carrito = new Carrito({
-//     _id: "ea1ce3f8-01e3-4989-a44e-8c0e217f3575",
-//     idUsuario: "af6b78eb-127b-48ba-8c87-a8410b93a0b3",
-//     productos: [{idProducto:"721337ab-7557-48d6-b0c6-c3e37b94b196", nombreProducto: "Pepsi", precio: 800, cantidad: 4}]
-// })
-
-// carrito.save()
