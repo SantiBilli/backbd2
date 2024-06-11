@@ -32,7 +32,7 @@ app.use("/api", datosUsuarioRouter)
 app.use("/api", crearPedidoRouter)
 app.use("/api", obtenerPedidosRouter)
 
-app.use("/api/images/products", express.static('C:\\Users\\santi\\Desktop\\BD2TPO\\backbd2\\uploads'))
+app.use("/api/images/products", express.static('C:\\Users\\GE\\OneDrive\\Desktop\\BD2\\backbd2\\uploads'))
 
 app.listen(PORT, async () => {
     console.log(`Server listening on https//localhost:${PORT}`)
