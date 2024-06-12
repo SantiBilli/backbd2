@@ -26,7 +26,9 @@ export const crearFacturaSVC = async (bodyParams) => {
         direccion: bodyParams.direccion,
         fecha: new Date(),
         tipoFactura: tipoFactura,
-        totalPagado: bodyParams.subtotal,
+        subtotal: bodyParams.subtotal,
+        descuento: bodyParams.descuento,
+        ivaValor: bodyParams.ivaValor,
         productos: transformedProductos
     })
 

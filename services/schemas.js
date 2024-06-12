@@ -50,7 +50,9 @@ const facturaSchema = new Schema({
     direccion: String,
     fecha: Date,
     tipoFactura: String, //Consumidor Final Factura B //Responsable Inscripto Factura A //Monotributo Factura B
-    totalPagado: Number,
+    subtotal: Number,
+    descuento: Number,
+    ivaValor: Number,
     productos: [{ nombreProducto: String, cantidad: Number, precio: Number, _id: false}]
 },    
 {
