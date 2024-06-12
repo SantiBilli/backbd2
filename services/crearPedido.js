@@ -3,15 +3,11 @@ import { v4 } from "uuid"
 
 export const crearPedidoSVC = async (bodyParams) => {
 
-    // console.log(bodyParams.arrCarrito);
-
     const transformedProductos = bodyParams.arrCarrito.map(item => ({
         nombreProducto: item.nombreProducto,
         cantidad: item.cantidad,
         precio: item.precio
       }));
-
-    // console.log(transformedProductos);
 
     const idPedido = v4()
 
@@ -31,7 +27,5 @@ export const crearPedidoSVC = async (bodyParams) => {
     pedido.save()
 
     await Carrito.updateOne({"idUsuario":bodyParams.userId},{$set:{'productos':[]}})
-
-    //Generar Factura ?!
 
 }

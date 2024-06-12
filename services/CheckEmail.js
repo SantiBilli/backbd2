@@ -6,12 +6,3 @@ export const emailExistSVC = async (bodyParams) => {
 
     return emailExist
 }
-
-// export const emailExistSVC = async (credentials) => {
-
-//     const credentialsJSON = JSON.parse(credentials)
-
-//     const emailExist = await redis_client.v4.hExists(credentialsJSON.email,"email")
-
-//     return emailExist
-// }

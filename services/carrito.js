@@ -13,8 +13,6 @@ export const getCarritoSVC = async (bodyParams) => {
 
 export const agregarProductoCarritoSVC = async (bodyParams) => {
 
-    // console.log("Params", bodyParams.descuento);
-
     try {
         const carrito = await Carrito.updateOne({'idUsuario':bodyParams.userId},{$push:{productos:{idProducto:bodyParams.idProducto, nombreProducto:bodyParams.nombreProducto, precio:bodyParams.precio, cantidad:bodyParams.cantidad, descuento: bodyParams.descuento}}});
         return true;
