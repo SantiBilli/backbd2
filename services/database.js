@@ -20,7 +20,7 @@ export default redis_client;
 
 //Conexion MongoDB
 try {
-    await mongoose.connect(`mongodb+srv://santibd2:${process.env.MONGODB_PASSWORD}@bd2custer.brywesn.mongodb.net/?retryWrites=true&w=majority&appName=bd2Custer`, {});
+    await mongoose.connect(`mongodb+srv://santibd2:${process.env.MONGODB_PASSWORD}@bd2custer.brywesn.mongodb.net/?retryWrites=true&w=majority&appName=bd2Custer`, {dbName: 'TPO_DB2'});
     // await mongoose.connect(`mongodb://mongo:${process.env.MONGODB_PASSWORD}@viaduct.proxy.rlwy.net:43356`, {})
     console.log("MongoDB Connected");
 } catch (err) {

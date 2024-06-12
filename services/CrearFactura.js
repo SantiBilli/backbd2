@@ -20,11 +20,13 @@ export const crearFacturaSVC = async (bodyParams) => {
 
     const factura = new Factura({
         _id: cantFacturas + 1,
+        idUsuario: bodyParams.userId,
         nombre: bodyParams.nombre,
         apellido: bodyParams.apellido,
         direccion: bodyParams.direccion,
         fecha: new Date(),
         tipoFactura: tipoFactura,
+        totalPagado: bodyParams.subtotal,
         productos: transformedProductos
     })
 

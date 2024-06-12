@@ -44,12 +44,14 @@ export const Pedido = model('Pedido', pedidoSchema)
 
 const facturaSchema = new Schema({
     _id: Number,
+    idUsuario: String, 
     nombre: String,
     apellido: String,
     direccion: String,
     fecha: Date,
     tipoFactura: String, //Consumidor Final Factura B //Responsable Inscripto Factura A //Monotributo Factura B
-    productos: [{ idProducto: String, nombreProducto: String, precio: Number, cantidad: Number, descuento: Number, _id: false}]
+    totalPagado: Number,
+    productos: [{ nombreProducto: String, cantidad: Number, precio: Number, _id: false}]
 },    
 {
     versionKey: false
